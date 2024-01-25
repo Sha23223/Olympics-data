@@ -81,14 +81,6 @@ if user_menu=='Overall Analysis':
     x = df.drop_duplicates(['Year', 'Sport', 'Event'])
     sns.heatmap(x.pivot_table(index='Sport', columns='Year', values='Event', aggfunc='count', ).fillna(0).astype('int'),annot=True)
     st.pyplot(fig)
-    st.title('')
-    st.title('Most Successful Athletes')
-    sport_list=df['Sport'].unique().tolist()
-    sport_list.sort()
-    sport_list.insert(0,'Overall')
-    sport= st.selectbox('Select a Sport',sport_list)
-    x=helper.most_successful(df,sport)
-    st.table(x)
 
 if user_menu=='Country-wise Analysis':
     country_list = df['region'].unique().astype(str).tolist()
