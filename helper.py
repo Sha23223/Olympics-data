@@ -59,13 +59,6 @@ def participating_athletes_over_time(df):
     athletes_over_time.rename(columns={'count': 'Number of Athletes'}, inplace=True)
     return athletes_over_time
 
-def most_successful(df,sport):
-    temp_df=df.dropna(subset=['Medal'])
-    if sport!='Overall':
-        temp_df=temp_df[temp_df['Sport']==sport]
-    ath=temp_df['Name'].value_counts()
-    return ath.reset_index().head(15).merge(df,on='Name',how='left')[['Name','count','Sport','region']].drop_duplicates().reset_index().drop(['index'],axis=1)
-
 def country_analysis(df,country):
     z = df.drop_duplicates(['Year', 'Sport', 'Event', 'Medal', 'Team', 'NOC', 'Games', 'City'])
     temp_df = z.dropna(subset=['Medal'])
